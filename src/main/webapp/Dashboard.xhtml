@@ -1,0 +1,168 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Dashboard</ui:define>
+
+	<f:metadata>
+		<f:viewAction action="#{dashboardBean.inicializar}" />  
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<div class="page-header">
+			<h1>Dashboard</h1>
+		</div>
+
+		<h:form id="form">
+
+			<div class="ui-g dashboard" style="margin-top: -16px">
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-1">
+						<div class="overview-box-icon">
+							<i class="fa fa-inbox" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Emprestado</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.emprestado}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.ultimoEmprestimo}</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-2">
+						<div class="overview-box-icon">
+							<i class="fa fa-map-marker" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Em Caixa</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.emCaixa}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-3">
+						<div class="overview-box-icon">
+							<i class="fa fa-folder" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Pago</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.pago}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.ultimoPagamento}</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-4">
+						<div class="overview-box-icon">
+							<i class="fa fa-inbox" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Pendente</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.pendente}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-2">
+						<div class="overview-box-icon">
+							<i class="fa fa-map-marker" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Investido</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.investido}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-3">
+						<div class="overview-box-icon">
+							<i class="fa fa-folder" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Juros a Receber</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.jurosReceber}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-4">
+						<div class="overview-box-icon">
+							<i class="fa fa-user" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Lucro</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.lucro}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-1">
+						<div class="overview-box-icon">
+							<i class="fa fa-inbox" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Estimativa</div>
+							<div class="overview-box-stats">R$ #{dashboardBean.pendente}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-3">
+						<div class="overview-box-icon">
+							<i class="fa fa-map-marker" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Investidores</div>
+							<div class="overview-box-stats">#{dashboardBean.totalInvestidores}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-g-12 ui-lg-3 ui-xl-3">
+					<div class="ui-g overview-box overview-box-4">
+						<div class="overview-box-icon">
+							<i class="fa fa-user" />
+						</div>
+						<div class="overview-box-content">
+							<div class="overview-box-title">Clientes</div>
+							<div class="overview-box-stats">#{dashboardBean.totalClientes}</div>
+							<div class="overview-box-details">atualizado em #{dashboardBean.lastUpdate}</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</h:form>
+
+		<h:form>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$.removeCookie('manhattan_expandeditems', {
+						path : '/'
+					});
+					$(".pm_Dashboard").click();
+					//$('#menuform_pm_dashboard').addClass('active-menuitem');
+				});
+			</script>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/manhattan">
+
+	<style>
+.layout-wrapper .layout-sidebar .sidebar-logo img {
+	margin-left: 0;
+	height: 30px;
+}
+
+.layout-wrapper .layout-sidebar .sidebar-logo {
+	padding-top: 15px;
+}
+
+.layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
+	margin-left: 0px;
+}
+</style>
+
+	<div class="layout-sidebar">
+		<div class="sidebar-logo">
+			<a href="/Dashboard.xhtml"> <p:graphicImage
+					name="images/smart-banking.png" library="manhattan-layout"
+					width="150" height="100"
+					style="margin-left: 10px; margin-top: 5px; height: 20px; width: 160px;" />
+			</a> <a href="#" class="sidebar-anchor animated fadeIn"
+				title="Toggle Menu"
+				style="float: right; margin-right: 13px; margin-top: 7px"> <i
+				class="fa"></i>
+			</a>
+		</div>
+
+		<div class="nano">
+			<div class="nano-content sidebar-scroll-content">
+				<div class="layout-menu-container">
+					<h:form id="menuform">
+						<pm:menu id="pm_menu">
+							<p:menuitem id="pm_Dashboard" styleClass="pm_Dashboard"
+								value="Dashboard" icon="fa fa-home" outcome="/Dashboard.xhtml" />
+
+							<p:menuitem id="pm_simulacao" styleClass="pm_simulacao"
+								value="Simular Operação" icon="fa fa-calculator"
+								outcome="/simulacao/SimularOperacao.xhtml" />
+
+							<p:submenu id="pm_operacoes" styleClass="pm_operacoes"
+								label="Operações" icon="fa fa-cogs">
+
+								<p:menuitem id="pm_emprestimo" styleClass="pm_emprestimo"
+									value="Novo empréstimo" icon="fa fa-bookmark-o"
+									outcome="/operacoes/Emprestimo.xhtml" />
+
+								<p:menuitem id="pm_pagamento2" styleClass="pm_pagamento"
+									value="Atualização / Pagamento" icon="fa fa-money"
+									outcome="/operacoes/AtualizacoesPagamentos.xhtml" />
+
+								<p:menuitem id="pm_investimento" styleClass="pm_investimento"
+									value="Investimento" icon="fa fa-diamond" rendered="false" />
+							</p:submenu>
+
+							<p:submenu id="pm_cadastro" label="Cadastro"
+								icon="fa fa-database">
+								<p:menuitem id="pm_cliente" value="Clientes"
+									icon="fa fa-user-plus"
+									outcome="/cadastros/CadastroClientes.xhtml" />
+
+								<p:menuitem id="pm_investidor" value="Investidores"
+									icon="fa fa-user-secret"
+									outcome="/cadastros/CadastroInvestidores.xhtml" />
+							</p:submenu>
+
+							<p:submenu id="pm_lancamento" label="Lançamentos"
+								icon="fa fa-retweet">
+								<p:menuitem id="pm_deposito" styleClass="pm_deposito"
+									value="Depósitos" icon="fa fa-money" outcome="/lancamentos/Depositos.xhtml" />
+
+								<p:menuitem id="pm_despesa" styleClass="pm_despesa"
+									value="Despesas" icon="fa fa-list-ol" outcome="/lancamentos/Despesas.xhtml" />
+							</p:submenu>
+
+							<p:menuitem id="pm_relatorio" styleClass="pm_relatorio"
+								value="Relatórios" icon="fa fa-line-chart"
+								outcome="/Dashboard.xhtml" rendered="false" />
+
+						</pm:menu>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>

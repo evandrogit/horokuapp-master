@@ -1,0 +1,321 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Empréstimo</ui:define>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{cadastroEmprestimoBean.emprestimo.id}" />
+		<f:viewAction action="#{cadastroEmprestimoBean.buscar}"
+			if="#{param.id ne null}" />
+	</f:metadata>
+
+	<ui:define name="content">
+
+		<style>
+@media ( min-width :220px) {
+	.ui-blockui-content {
+		padding: 0.25em;
+	}
+	.ui-slider .ui-slider-handle {
+		width: 1.7em;
+		height: 1.7em;
+	}
+	.ui-slider-horizontal {
+		height: 1.2em !important;
+	}
+	body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button {
+		height: 28px !important;
+	}
+	.result .apply-result .ui-grid-responsive .ui-grid-col-4 {
+		width: 50% !important;
+		float: left !important;
+	}
+	.result .apply-result .ui-grid-responsive .ui-grid-col-6 {
+		width: 50% !important;
+		float: left !important;
+	}
+	.qty-parcelas.ui-panelgrid .ui-panelgrid-cell:nth-child(1) {
+		margin-top: 10px !important;
+	}
+	.percentual-juros.ui-panelgrid .ui-panelgrid-cell:nth-child(1) {
+		margin-top: 8px !important;
+	}
+	.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td,
+		.ui-datatable tfoot th {
+		font-size: 13px;
+	}
+	body .btn-new.ui-button {
+		color: #676363;
+		background-color: #f9f9f9;
+		border: 1px solid #8a8585;
+	}
+	.swal2-popup {
+		width: 28em;
+		max-width: 100%;
+		padding: 0 0 0.4em 0;
+		font-size: 0.75rem;
+	}
+	.swal2-popup #swal2-content {
+		font-weight: 400;
+	}
+	body #cliente-dialog.ui-dialog .ui-dialog-content {
+		background-color: #ffffff;
+		padding: 10px 0px 0px 0px;
+	}
+	body .ui-datatable .ui-paginator {
+		padding: 2px 0px !important;
+	}
+	#cliente-dialog.ui-dialog {
+		margin-top: -1550px !important;
+	}
+}
+
+@media ( min-width :460px) {
+	.ui-slider .ui-slider-handle {
+		width: 1.7em;
+		height: 1.7em;
+	}
+	.ui-slider-horizontal {
+		height: 1.2em;
+	}
+	body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button {
+		height: 27px !important;
+	}
+	.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td,
+		.ui-datatable tfoot th {
+		font-size: 14px;
+	}
+}
+
+@media ( min-width :640px) {
+	.ui-slider-handle {
+		width: 1.2em !important;
+		height: 1.2em !important;
+	}
+	.ui-slider-horizontal {
+		height: 0.8em !important;
+	}
+	body .ui-fluid .ui-trigger-calendar .ui-datepicker-trigger.ui-button {
+		height: 27px !important;
+	}
+	.result .apply-result .ui-grid-responsive .ui-grid-col-4 {
+		width: 33.33333% !important;
+		float: none;
+	}
+	.result .apply-result .ui-grid-responsive .ui-grid-col-6 {
+		width: auto !important;
+		float: none;
+	}
+}
+</style>
+
+		<div class="page-header">
+			<h1>Empréstimo</h1>
+		</div>
+
+		<p:growl id="msg" closable="true" life="500" showSummary="false"
+			showDetail="true" style="text-align: center" />
+
+		<div class="ui-g-12 ui-lg-12">
+
+			<h:form id="form">
+
+				<p:defaultCommand target="btn-calcular" />
+
+				<p:panel class="card card-w-title ui-fluid"
+					style="margin-top: -10px; padding-bottom: 0px !important">
+
+					<h3 style="font-weight: bold">Dados do Cliente</h3>
+
+					<p:inputText type="hidden"
+						value="#{cadastroEmprestimoBean.emprestimo.cliente.id}"
+						required="true" requiredMessage="Cliente deve ser informado." />
+
+					<p:commandButton styleClass="btn-new" icon="fa fa-fw fa-user"
+						title="Buscar cliente" oncomplete="PF('cliente-dialog').show()"
+						process="@this"
+						style="position: relative; float: right; margin-top: -45px; margin-right: 8px; width: 40px" />
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome" readonly="true"
+							value="#{cadastroEmprestimoBean.emprestimo.cliente.nome}" />
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-2">
+
+						<p:outputLabel value="CPF" for="cpf" />
+						<p:inputMask id="cpf"
+							value="#{cadastroEmprestimoBean.emprestimo.cliente.cpf}"
+							mask="999.999.999-99" readonly="true" />
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-2">
+
+						<p:outputLabel value="Contato" for="contato" />
+						<p:inputMask id="contato" readonly="true"
+							value="#{cadastroEmprestimoBean.emprestimo.cliente.contato}"
+							mask="(99) 9-9999-9999" />
+
+					</p:panelGrid>
+
+					<p:spacer />
+
+					<h3 style="font-weight: bold">Dados do Empréstimo</h3>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Contrato N°." for="contrato" />
+						<p:inputText id="contrato" readonly="true"
+							value="#{cadastroEmprestimoBean.emprestimo.contrato}"
+							placeholder="Gerado automaticamente." />
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Data do empréstimo" for="data-emprestimo" />
+						<p:calendar id="data-emprestimo"
+							value="#{cadastroEmprestimoBean.emprestimo.dataEmprestimo}"
+							showOn="button" pattern="dd/MM/yyyy" locale="pt" />
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Valor do empréstimo" for="valor-emprestimo" />
+						<p:inputNumber id="valor-emprestimo" decimalSeparator=","
+							thousandSeparator="."
+							value="#{cadastroEmprestimoBean.emprestimo.valorEmprestimo}"
+							decimalPlaces="2" />
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 10px"
+						styleClass="panelgrid-noborder disabled disabled percentual-juros"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Percentual de juros (%)" />
+						<p:panel style="text-align: center">
+							<h:outputText id="percentual"
+								value="%#{cadastroEmprestimoBean.emprestimo.percentualJuros}"
+								style="font-weight: bold; font-size: 18px" />
+							<h:inputHidden id="percentual-juros"
+								value="#{cadastroEmprestimoBean.emprestimo.percentualJuros}" />
+							<p:slider for="percentual-juros" display="percentual"
+								displayTemplate="%{value}" minValue="1" maxValue="30" />
+						</p:panel>
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel value="Data do 1° vencimento" for="vencimento" />
+						<p:calendar id="vencimento" locale="pt"
+							value="#{cadastroEmprestimoBean.emprestimo.dataVencimento}"
+							showOn="button" pattern="dd/MM/yyyy" />
+					</p:panelGrid>
+
+					<p:spacer />
+
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="panelgrid-noborder disabled disabled"
+						columnClasses="ui-grid-col-2, ui-grid-col-3">
+
+						<p:outputLabel />
+						<p:commandButton id="btn-calcular" value="Salvar"
+							onstart="PF('downloadLoading').show();"
+							onsuccess="PF('downloadLoading').hide();" update="msg form"
+							action="#{cadastroEmprestimoBean.salvar}" process="@this form"
+							style="font-weight: bold; margin-bottom: 10px" />
+					</p:panelGrid>
+
+				</p:panel>
+			</h:form>
+
+		</div>
+
+		<p:dialog header="Buscar cliente" widgetVar="cliente-dialog"
+			id="cliente-dialog" resizable="false" modal="true"
+			closeOnEscape="true" responsive="true" width="350px">
+
+			<h:form id="form-dialog">
+
+				<p:focus for="search" />
+
+				<div class="ui-g-12 ui-lg-12">
+					<p:panel class="card card-w-title ui-fluid"
+						style="padding-bottom: 0px;">
+
+						<p:defaultCommand target="pesquisar-button" />
+
+						<p:inputText id="search"
+							value="#{cadastroClienteBean.filtro.nome}"
+							placeholder="Buscar pelo nome" style="width: 180px" />
+						<p:commandButton icon="fa fa-fw fa-search" title="Pesquisar"
+							id="pesquisar-button" update="clientesTable"
+							style="margin-left: 3px; width: 40px" process="@parent"
+							action="#{cadastroClienteBean.pesquisar}"
+							onstart="PF('downloadLoading').show();"
+							oncomplete="PF('downloadLoading').hide();">
+						</p:commandButton>
+
+						<p:dataTable id="clientesTable" paginatorAlwaysVisible="false"
+							value="#{cadastroClienteBean.todosClientes}" var="cliente"
+							emptyMessage="Nenhum cliente encontrado." rows="2"
+							paginator="true" paginatorPosition="bottom"
+							style="margin-top: 10px">
+
+							<p:column headerText="Nome" width="80%">
+								<h:outputText value="#{cliente.nome}" />
+							</p:column>
+
+							<p:column width="20%" style="text-align: center">
+								<p:commandButton icon="fa fa-fw fa-check"
+									action="#{cadastroEmprestimoBean.definirCliente(cliente)}"
+									title="Definir cliente" update="form" style="width: 100%"
+									process="@this" oncomplete="PF('cliente-dialog').hide();">
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</p:panel>
+				</div>
+
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="downloadLoading" showHeader="false" modal="true"
+			widgetVar="downloadLoading" header="Status" draggable="false"
+			closable="false" resizable="false">
+			<p:graphicImage name="images/loadingbar.gif"
+				library="manhattan-layout" width="50" />
+		</p:dialog>
+
+		<script type="text/javascript">
+			function start() {
+				PF('downloadLoading').show();
+			}
+
+			function stop() {
+				PF('downloadLoading').hide();
+			}
+		</script>
+
+	</ui:define>
+
+</ui:composition>
