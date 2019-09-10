@@ -147,7 +147,7 @@
 
 					<p:spacer />
 
-					<p:commandButton icon="fa fa-fw fa-file-archive-o" value="Anexar"
+					<p:commandButton icon="fa fa-fw fa-file-archive-o" value="Anexos"
 						styleClass="btn-anexo"
 						action="#{cadastroClienteBean.prepararEditarCadastro}"
 						process="@this" update="anexo-dialog"
@@ -302,6 +302,7 @@
 							<p:column width="20%" style="text-align: center">
 								<p:commandButton icon="fa fa-fw fa-trash"
 									actionListener="#{cadastroClienteBean.removerAnexo(anexo)}"
+									onstart="start();" oncomplete="stop();"
 									title="Remover" update="anexosTable" 
 									style="width: 100%; background-color: #d44729" process="@this">
 								</p:commandButton>
@@ -321,6 +322,7 @@
 
 						<p:commandButton icon="fa fa-fw fa-save" value="Save" id="save-upload"
 							action="#{cadastroClienteBean.upload}" ajax="false"
+							onclick="PrimeFaces.monitorDownload(start, stop);"
 							 update="anexosTable" style="background-color: #3e3f41; font-weight: bold">
 
 						</p:commandButton>
