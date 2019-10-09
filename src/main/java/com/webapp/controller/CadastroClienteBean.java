@@ -19,6 +19,7 @@ import com.webapp.model.Anexo;
 import com.webapp.model.Cliente;
 import com.webapp.model.Emprestimo;
 import com.webapp.model.Parcela;
+import com.webapp.repository.Anexos;
 import com.webapp.repository.Clientes;
 import com.webapp.repository.Emprestimos;
 import com.webapp.repository.Parcelas;
@@ -42,6 +43,9 @@ public class CadastroClienteBean implements Serializable {
 	
 	@Inject
 	private Parcelas parcelas;
+	
+	@Inject
+	private Anexos anexosRepository;
 
 	private List<Cliente> todosClientes;
 
@@ -66,7 +70,7 @@ public class CadastroClienteBean implements Serializable {
 
 	public void prepararEditarCadastro() {
 		cliente = clienteSelecionado;
-		anexos = cliente.getAnexos();
+		anexos = anexosRepository.todos(cliente);
 	}
 
 	public void salvar() {
@@ -160,20 +164,32 @@ public class CadastroClienteBean implements Serializable {
 
 	public void upload() {
 		
-		Anexo anexo = new Anexo();
-		anexo.setFile(file.getContents());
-		anexo.setFileName(file.getFileName());
-		anexo.setCliente(cliente);
-		
-		anexos.add(anexo);
-		
-		cliente.setAnexos(anexos);
-		
-		clientes.save(cliente);
-		
-		anexos = cliente.getAnexos();
+		if(!file.getFileName().equals("")) {
+			Anexo anexo = new Anexo();
+			anexo.setFile(file.getContents());
+			anexo.setFileName(file.getFileName());
+			anexo.setCliente(cliente);
+			
+			List<Anexo> anexosTemp = new ArrayList<Anexo>();
+			for (Anexo anexoTemp : anexos) {
+				anexosTemp.add(anexoTemp);
+			}
+			
+			anexos = new ArrayList<Anexo>();
+			cliente.setAnexos(anexos);
+			clientes.save(cliente);
+			
+			anexosTemp.add(anexo);
+			cliente.setAnexos(anexosTemp);
+			clientes.save(cliente);
+			
+			anexos = cliente.getAnexos();
 
-		FacesUtil.addInfoMessage("Arquivo anexado com sucesso!");
+			FacesUtil.addInfoMessage("Arquivo anexado com sucesso!");
+			
+		} else {
+			FacesUtil.addErrorMessage("Nenhum arquivo anexado!");
+		}
 	}
 	
 	public void removerAnexo(Anexo anexo) {

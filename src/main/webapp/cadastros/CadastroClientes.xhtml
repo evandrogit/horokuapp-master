@@ -15,6 +15,9 @@
 
 		<style>
 @media ( min-width :220px) {
+	body .ui-toolbar {
+	    padding: 5px 5px;
+	}
 	.ui-slider .ui-slider-handle {
 		width: 1.7em;
 		height: 1.7em;
@@ -126,7 +129,7 @@
 				<f:facet name="left">
 					<p:commandButton value="Novo" icon="fa fa-fw fa-file-text-o"
 						action="#{cadastroClienteBean.prepararNovoCadastro}"
-						process="@this" update="cliente-dialog"
+						process="@this" update="cliente-dialog" 
 						oncomplete="PF('cliente-dialog').show()">
 
 						<p:resetInput target="cliente-dialog" />
@@ -286,14 +289,15 @@
 						style="padding-bottom: 0px;">
 
 						<p:fileUpload styleClass="btn-upload"
-							value="#{cadastroClienteBean.file}" update="anexosTable"
-							label="Anexar"
-							mode="simple" skinSimple="true" />
+							value="#{cadastroClienteBean.file}" update="anexosTable save-upload"
+							label="Anexar" process="@this"
+							mode="simple" skinSimple="true">
+						</p:fileUpload>
 
 						<p:dataTable id="anexosTable" paginatorAlwaysVisible="false"
 							value="#{cadastroClienteBean.anexos}" var="anexo"
 							emptyMessage="Nenhum anexo encontrado." rows="2" paginator="true"
-							paginatorPosition="bottom" style="margin-top: 10px; margin-bottom: 10px">
+							paginatorPosition="bottom" style="margin-top: 10px; margin-bottom: 20px">
 
 							<p:column headerText="Arquivo anexado" width="80%">
 								<h:outputText value="#{anexo.fileName}" />
@@ -323,7 +327,13 @@
 						<p:commandButton icon="fa fa-fw fa-save" value="Save" id="save-upload"
 							action="#{cadastroClienteBean.upload}" ajax="false"
 							onclick="PrimeFaces.monitorDownload(start, stop);"
-							 update="anexosTable" style="background-color: #3e3f41; font-weight: bold">
+							update="anexosTable" style="background-color: #3e3f41; font-weight: bold; float: rifht; width: 140px">
+
+						</p:commandButton>
+						
+						<p:commandButton icon="fa fa-fw fa-close" value="Fechar"
+							onclick="PF('anexo-dialog').hide();"
+							style="background-color: #b33620; font-weight: bold; float: left; width: 140px">
 
 						</p:commandButton>
 					</p:panel>
