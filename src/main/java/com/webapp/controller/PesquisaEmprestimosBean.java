@@ -127,7 +127,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 		for (Emprestimo emprestimo : listaEmprestimos) {
 			emprestimo.setTotalTemp(nf.format(emprestimo.getTotal().doubleValue()));
 			
-			if(filtro.getEmprestimoVencido() == true) {
+			if(emprestimo.getProximoVencimento().before(new Date())) {
 				emprestimo.setVencido(true);
 			} else {
 				emprestimo.setVencido(false);
