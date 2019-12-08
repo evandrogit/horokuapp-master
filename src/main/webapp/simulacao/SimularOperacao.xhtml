@@ -346,7 +346,7 @@
 						<p:outputLabel
 							value="#{simularOperacaoBean.simulacao.dataEmprestimo}"
 							style="font-weight: bold">
-							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+							<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 						</p:outputLabel>
 					</p:panelGrid>
 
@@ -393,7 +393,7 @@
 
 							<p:column headerText="Vencimento" style="text-align: center">
 								<h:outputText value="#{parcela.vencimentoParcela}">
-									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</h:outputText>
 							</p:column>
 						</p:dataTable>
