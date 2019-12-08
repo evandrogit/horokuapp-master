@@ -743,7 +743,7 @@
 									style="float: right;position: relative;margin-right: 8px;font-weight: bold;font-size: 13px;background-color: #089a29c7;"
 									value="Confirmar"
 									action="#{pesquisaEmprestimosBean.confirmarPagamento}"
-									update="form pagamentosTable" oncomplete="PF('pagamento-dialog').hide();">
+									update="form form:pagamentosTable" oncomplete="PF('pagamento-dialog').hide();">
 
 									<p:resetInput target="pagamento-dialog" />
 								</p:commandButton>
