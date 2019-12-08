@@ -59,7 +59,7 @@ public class Emprestimo implements Serializable {
 	
 	
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Date proximoVencimento;
 	
 	@Transient
