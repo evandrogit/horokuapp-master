@@ -259,6 +259,9 @@ public class Emprestimo implements Serializable {
 	
 	@Transient
 	private String totalTemp;
+	
+	@Transient
+	private Boolean vencido = false;
 
 	public String getTotalTemp() {
 		return totalTemp;
@@ -266,6 +269,14 @@ public class Emprestimo implements Serializable {
 
 	public void setTotalTemp(String totalTemp) {
 		this.totalTemp = totalTemp;
+	}
+
+	public Boolean getVencido() {
+		return vencido;
+	}
+
+	public void setVencido(Boolean vencido) {
+		this.vencido = vencido;
 	}
 	
 

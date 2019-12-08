@@ -7,6 +7,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -125,6 +126,10 @@ public class PesquisaEmprestimosBean implements Serializable {
 		
 		for (Emprestimo emprestimo : listaEmprestimos) {
 			emprestimo.setTotalTemp(nf.format(emprestimo.getTotal().doubleValue()));
+			
+			if(emprestimo.getDataVencimento().before(new Date())) {
+				emprestimo.setVencido(true);
+			}
 		}
 		
 		emprestimoSelecionado = null;

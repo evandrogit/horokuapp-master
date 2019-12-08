@@ -366,13 +366,13 @@
 
 						<p:column headerText="Status" styleClass="coluna-aberto">
 							<h:outputText styleClass="aberto"
-								rendered="#{emprestimo.statusEmprestimo eq 'ABERTO' and emprestimo.dataEmprestimo ge now}" />
+								rendered="#{emprestimo.statusEmprestimo eq 'ABERTO' and emprestimo.vencido == false}" />
 
 							<h:outputText styleClass="fechado"
 								rendered="#{emprestimo.statusEmprestimo eq 'FECHADO'}" />
 								
 							<h:outputText styleClass="vencido"
-								rendered="#{emprestimo.statusEmprestimo eq 'ABERTO' and emprestimo.dataEmprestimo le now}" />
+								rendered="#{emprestimo.statusEmprestimo eq 'ABERTO' and emprestimo.vencido == true}" />
 						</p:column>
 					</p:dataTable>
 				</p:panel>
