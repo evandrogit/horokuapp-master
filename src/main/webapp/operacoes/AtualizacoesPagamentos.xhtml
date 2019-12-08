@@ -359,9 +359,12 @@
 						</p:column>
 
 						<p:column headerText="Vencimento">
-							<h:outputText value="#{emprestimo.proximoVencimento}">
+							<h:outputText value="#{emprestimo.proximoVencimento}" rendered="#{emprestimo.proximoVencimento != null}">
 								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
 							</h:outputText>
+
+                                                        <h:outputText value="-" rendered="#{emprestimo.proximoVencimento == null}">
+		                                        </h:outputText>
 						</p:column>
 
 						<p:column headerText="Status" styleClass="coluna-aberto">
