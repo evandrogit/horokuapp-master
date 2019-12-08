@@ -57,13 +57,13 @@ public class Emprestimos implements Serializable {
 			
 			if(filter.getEmprestimoVencido() == true) {			
 				typedQuery = manager.createQuery(
-						"select e from Emprestimo e join fetch e.cliente c where c.nome like :nome and e.statusEmprestimo = :status and e.dataEmprestimo <= :currentDate order by e.id",
-						Emprestimo.class).setParameter("nome", "%" + filter.getNome() + "%").setParameter("status", StatusEmprestimo.ABERTO).setParameter("currentDate", new Date());
+						"select e from Emprestimo e join fetch e.cliente c where upper(c.nome) like :nome and e.statusEmprestimo = :status and e.dataEmprestimo <= :currentDate order by e.id",
+						Emprestimo.class).setParameter("nome", "%" + filter.getNome().toUpperCase() + "%").setParameter("status", StatusEmprestimo.ABERTO).setParameter("currentDate", new Date());
 				
 			} else {
 				typedQuery = manager.createQuery(
-						"select e from Emprestimo e join fetch e.cliente c where c.nome like :nome order by e.id",
-						Emprestimo.class).setParameter("nome", "%" + filter.getNome() + "%");
+						"select e from Emprestimo e join fetch e.cliente c where upper(c.nome) like :nome order by e.id",
+						Emprestimo.class).setParameter("nome", "%" + filter.getNome().toUpperCase() + "%");
 			}
 
 		} else {
