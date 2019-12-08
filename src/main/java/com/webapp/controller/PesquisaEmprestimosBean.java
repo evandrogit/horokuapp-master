@@ -231,6 +231,12 @@ public class PesquisaEmprestimosBean implements Serializable {
 		
 		emprestimoSelecionado.setProximoVencimento(emprestimoSelecionado.getProximoVencimentoTemp());
 
+                if(emprestimoSelecionado.getProximoVencimento().before(new Date())) {
+			emprestimoSelecionado.setVencido(true);
+		} else {
+		        emprestimoSelecionado.setVencido(false);
+		}
+
 		System.out.println("Total pago: " + BigDecimal
 				.valueOf(emprestimoSelecionado.getTotalPago().doubleValue() + parcela.getValorPago().doubleValue()));
 		
