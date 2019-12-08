@@ -186,7 +186,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 	
 			parcela.setValorRestante(BigDecimal.valueOf(valorRestante).setScale(2, BigDecimal.ROUND_HALF_EVEN));
 
-                        if(parcela.getValorRestante() <= 0) {
+                        if(parcela.getValorRestante().doubleValue() <= 0) {
                              emprestimoSelecionado.setProximoVencimentoTemp(null);
                         }
 		}
