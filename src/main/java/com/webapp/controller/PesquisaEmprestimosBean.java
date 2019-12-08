@@ -241,6 +241,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 				.valueOf(emprestimoSelecionado.getTotalPago().doubleValue() + parcela.getValorPago().doubleValue()));
 		
 		if(emprestimoSelecionado.getTotal().doubleValue() <= 0) {
+                        emprestimoSelecionado.setProximoVencimento(null);
 			emprestimoSelecionado.setStatusEmprestimo(StatusEmprestimo.FECHADO);
 			emprestimoSelecionado.setJurosFinal(BigDecimal.valueOf(emprestimoSelecionado.getJurosInicial().doubleValue() + emprestimoSelecionado.getJurosFinal().doubleValue()));
 		}
