@@ -158,7 +158,7 @@
 
 					<p:inputText id="search"
 						value="#{lancamentoDepositoBean.filtro.nomeInvestidor}"
-						placeholder="Digite nome do investidor" style="width: 180px" />
+						placeholder="Digite nome do investidor" style="width: 160px" />
 					<p:commandButton icon="fa fa-fw fa-search" title="Pesquisar"
 						id="pesquisar-button" update="depositosTable toolbar totalDepositado"
 						style="margin-left: 3px; width: 40px" process="@parent"
@@ -167,7 +167,7 @@
 
 					<p:outputLabel id="totalDepositado"
 						value="Total: R$ #{lancamentoDepositoBean.totalDepositos}"
-						style="float: right; position: relative; margin-top: 6px; font-weight: bold;" />
+						style="float: right; position: relative; margin-top: 6px; font-weight: bold;font-size:13px" />
 
 					<p:dataTable id="depositosTable" reflow="true"
 						paginatorAlwaysVisible="false"
