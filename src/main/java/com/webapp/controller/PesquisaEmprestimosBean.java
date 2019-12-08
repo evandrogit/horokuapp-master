@@ -129,7 +129,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 		
 		emprestimoSelecionado = null;
 	}
-
+	
 	public void excluir() {
 
 		listaParcelas = parcelas.todasParcelas(emprestimoSelecionado.getId());

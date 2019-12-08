@@ -301,10 +301,11 @@
 
 					<p:inputText id="search"
 						value="#{pesquisaEmprestimosBean.filtro.nome}"
-						placeholder="Digite nome do cliente" style="width: 180px" />
+						placeholder="Digite nome do cliente" style="width: 160px" />
+
 					<p:commandButton icon="fa fa-fw fa-search" title="Pesquisar"
 						id="pesquisar-button" update="emprestimosTable toolbar pay-button"
-						style="margin-left: 3px; width: 40px" process="@parent"
+						style="margin-left: 3px; width: 40px" process="@parent vencidos"
 						action="#{pesquisaEmprestimosBean.pesquisar}">
 					</p:commandButton>
 
@@ -319,6 +320,19 @@
 
 						<p:resetInput target="pagamento-dialog" />
 					</p:commandButton>
+				</p:panel>
+
+				<p:panel class="card card-w-title ui-fluid"
+					style="padding-bottom: 0px;">
+
+					<p:outputLabel value="Empréstimos vencidos" for="vencidos"
+						style="margin-left: 1px;margin-top: 5px;float: left;font-size:13px;color: black;" />
+					<p:inputSwitch id="vencidos" value="#{pesquisaEmprestimosBean.filtro.emprestimoVencido}" onLabel="Sim" offLabel="Não"
+						style="margin-left: 16px">
+						<p:ajax event="change"
+							listener="#{pesquisaEmprestimosBean.pesquisar}"
+							update="emprestimosTable" process="@this search" />
+					</p:inputSwitch>
 
 					<p:dataTable id="emprestimosTable" reflow="true"
 						paginatorAlwaysVisible="false"

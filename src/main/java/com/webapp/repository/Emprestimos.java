@@ -1,6 +1,7 @@
 package com.webapp.repository;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,12 +54,27 @@ public class Emprestimos implements Serializable {
 		TypedQuery<Emprestimo> typedQuery;
 
 		if (StringUtils.isNotBlank(filter.getNome())) {
-			typedQuery = manager.createQuery(
-					"select e from Emprestimo e join fetch e.cliente c where c.nome like :nome order by e.id",
-					Emprestimo.class).setParameter("nome", "%" + filter.getNome() + "%");
+			
+			if(filter.getEmprestimoVencido() == true) {			
+				typedQuery = manager.createQuery(
+						"select e from Emprestimo e join fetch e.cliente c where c.nome like :nome and e.statusEmprestimo = :status and e.dataEmprestimo le :currentDate order by e.id",
+						Emprestimo.class).setParameter("nome", "%" + filter.getNome() + "%").setParameter("status", StatusEmprestimo.ABERTO).setParameter("currentDate", new Date());
+				
+			} else {
+				typedQuery = manager.createQuery(
+						"select e from Emprestimo e join fetch e.cliente c where c.nome like :nome order by e.id",
+						Emprestimo.class).setParameter("nome", "%" + filter.getNome() + "%");
+			}
 
 		} else {
-			typedQuery = manager.createQuery("select e from Emprestimo e", Emprestimo.class);
+			
+			if(filter.getEmprestimoVencido() == true) {	
+				typedQuery = manager.createQuery("select e from Emprestimo e where e.statusEmprestimo = :status and e.dataEmprestimo le :currentDate", Emprestimo.class).setParameter("status", StatusEmprestimo.ABERTO).setParameter("currentDate", new Date());
+				
+			} else {
+				typedQuery = manager.createQuery("select e from Emprestimo e", Emprestimo.class);
+			}
+			
 		}
 
 		return typedQuery.getResultList();
