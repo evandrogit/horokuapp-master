@@ -129,6 +129,8 @@ public class PesquisaEmprestimosBean implements Serializable {
 			
 			if(emprestimo.getDataVencimento().before(new Date())) {
 				emprestimo.setVencido(true);
+			} else {
+				emprestimo.setVencido(false);
 			}
 		}
 		
