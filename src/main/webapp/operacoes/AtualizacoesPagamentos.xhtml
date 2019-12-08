@@ -360,7 +360,7 @@
 
 						<p:column headerText="Vencimento">
 							<h:outputText value="#{emprestimo.proximoVencimento}" rendered="#{emprestimo.proximoVencimento != null}">
-								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+								<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 							</h:outputText>
 
                                                         <h:outputText value="-" rendered="#{emprestimo.proximoVencimento == null}">
@@ -448,7 +448,7 @@
 								<p:outputLabel
 									value="#{pesquisaEmprestimosBean.emprestimoSelecionado.dataEmprestimo}"
 									style="font-weight: bold">
-									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</p:outputLabel>
 							</p:panelGrid>
 
@@ -483,7 +483,7 @@
 								<p:outputLabel
 									value="#{pesquisaEmprestimosBean.emprestimoSelecionado.dataVencimento}"
 									style="font-weight: bold">
-									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</p:outputLabel>
 							</p:panelGrid>
 
@@ -553,7 +553,7 @@
 
 								<p:column headerText="Data" style="text-align:center">
 									<h:outputText value="#{parcela.dataPagamento}">
-										<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+										<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 									</h:outputText>
 								</p:column>
 
@@ -587,7 +587,7 @@
 								<p:outputLabel
 									value="#{pesquisaEmprestimosBean.emprestimoSelecionado.proximoVencimento}"
 									style="font-weight: bold">
-									<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4" />
+									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</p:outputLabel>
 
 								<p:outputLabel value="Débito:" />
