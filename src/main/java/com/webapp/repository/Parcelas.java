@@ -43,7 +43,7 @@ public class Parcelas implements Serializable {
 		TypedQuery<Parcela> typedQuery;
 
 		typedQuery = manager
-				.createQuery("select p from Parcela p join fetch p.emprestimo e where e.id = :id order by p.id",
+				.createQuery("select p from Parcela p join fetch p.emprestimo e where e.id = :id order by p.id desc",
 						Parcela.class)
 				.setParameter("id", id);
 
