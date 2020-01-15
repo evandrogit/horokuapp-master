@@ -72,7 +72,7 @@ public class Emprestimos implements Serializable {
 				typedQuery = manager.createQuery("select e from Emprestimo e where e.statusEmprestimo = :status and e.proximoVencimento <= :currentDate", Emprestimo.class).setParameter("status", StatusEmprestimo.ABERTO).setParameter("currentDate", new Date());
 				
 			} else {
-				typedQuery = manager.createQuery("select e from Emprestimo e order e.id desc", Emprestimo.class);
+				typedQuery = manager.createQuery("select e from Emprestimo e order by e.id desc", Emprestimo.class);
 			}
 			
 		}
