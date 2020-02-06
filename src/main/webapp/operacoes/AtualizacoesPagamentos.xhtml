@@ -785,7 +785,7 @@
 
 				<p:commandButton icon="fa fa-fw fa-save"
 					style="float: right;font-weight: bold;font-size: 13px;background-color: #089a29c7;position: relative;margin-top: 8px;margin-right: -10px;"
-					value="Confirmar" process="@this inline"
+					value="Confirmar" process="@this proximoPagamento-dialog inline"
 					action="#{pesquisaEmprestimosBean.confirmarAlteracaoVencimento}"
 					update="form cliente-dialog" oncomplete="PF('proximoPagamento-dialog').hide();">
 				</p:commandButton>
