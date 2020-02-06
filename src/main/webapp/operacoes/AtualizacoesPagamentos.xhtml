@@ -778,6 +778,24 @@
 			<p:calendar id="inline" mode="inline"
 				value="#{pesquisaEmprestimosBean.emprestimoSelecionado.proximoVencimento}"
 				locale="pt" pattern="dd/MM/yyyy" />
+			
+			<p:panelGrid columns="2" layout="grid"
+				styleClass="panelgrid-noborder disabled disabled apply-result"
+				columnClasses="ui-grid-col-6, ui-grid-col-6">
+
+				<p:commandButton icon="fa fa-fw fa-close"
+					style="font-weight: bold;font-size: 13px;background-color: #089a29c7;"
+					value="Cancelar"
+					oncomplete="PF('proximoPagamento-dialog').hide();">
+				</p:commandButton>
+				
+				<p:commandButton icon="fa fa-fw fa-save"
+					style="font-weight: bold;font-size: 13px;background-color: #089a29c7;"
+					value="Confirmar"
+					action="#{pesquisaEmprestimosBean.confirmarPagamento}"
+					update="form" oncomplete="PF('proximoPagamento-dialog').hide();">
+				</p:commandButton>
+			</p:panelGrid>
 		</p:dialog>
 
 		<script type="text/javascript">
