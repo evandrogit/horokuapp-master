@@ -783,17 +783,17 @@
 				styleClass="panelgrid-noborder disabled disabled apply-result"
 				columnClasses="ui-grid-col-6, ui-grid-col-6">
 
-				<p:commandButton icon="fa fa-fw fa-close"
-					style="font-weight: bold;font-size: 13px;background-color: #089a29c7;"
-					value="Cancelar"
-					oncomplete="PF('proximoPagamento-dialog').hide();">
-				</p:commandButton>
-				
 				<p:commandButton icon="fa fa-fw fa-save"
-					style="font-weight: bold;font-size: 13px;background-color: #089a29c7;"
+					style="float: right;font-weight: bold;font-size: 13px;background-color: #089a29c7;position: relative;margin-top: 8px;margin-right: -10px;"
 					value="Confirmar"
 					action="#{pesquisaEmprestimosBean.confirmarPagamento}"
 					update="form" oncomplete="PF('proximoPagamento-dialog').hide();">
+				</p:commandButton>
+				
+				<p:commandButton icon="fa fa-fw fa-close"
+					style="float: right;font-weight: bold;font-size: 13px;background-color: #ab3705b5;position: relative;margin-right: 3px;"
+					value="Cancelar"
+					oncomplete="PF('proximoPagamento-dialog').hide();">
 				</p:commandButton>
 			</p:panelGrid>
 		</p:dialog>
