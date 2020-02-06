@@ -577,7 +577,7 @@
 						<p:panel>
 							<p:commandLink icon="fa fa-fw fa-edit" 
 								style="float: right;width: 25px;height: 25px;position: absolute;margin-right: 60px;margin-top: 31px;right: 0;font-weight: bold;font-size: 13px;"	
-								update="form">
+								update="form" oncomplete="PF('proximoPagamento-dialog').show()">
 								
 								<h:outputText value="Alterar" />  
 							</p:commandLink>
@@ -769,6 +769,15 @@
 			closable="false" resizable="false">
 			<p:graphicImage name="images/loadingbar.gif"
 				library="manhattan-layout" width="50" />
+		</p:dialog>
+		
+		<p:dialog id="proximoPagamento-dialog" showHeader="false" modal="true"
+			widgetVar="proximoPagamento-dialog" draggable="false"
+			closable="false" resizable="false" position="center">
+			
+			<p:calendar id="inline" mode="inline"
+				value="#{pesquisaEmprestimosBean.emprestimoSelecionado.proximoVencimento}"
+				locale="pt" pattern="dd/MM/yyyy" />
 		</p:dialog>
 
 		<script type="text/javascript">
