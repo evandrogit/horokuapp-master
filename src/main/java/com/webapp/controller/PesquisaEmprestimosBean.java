@@ -272,7 +272,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 	
 	public void confirmarAlteracaoVencimento() {
 		emprestimos.save(emprestimoSelecionado);
-		
+		pesquisar();
 		PrimeFaces.current().executeScript("swal({position : 'center',type : 'success',text : 'Alteração realizada com sucesso.',title : 'Concluído!',showConfirmButton : true,});");
 	}
 
