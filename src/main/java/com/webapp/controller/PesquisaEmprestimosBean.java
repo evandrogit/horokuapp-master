@@ -269,6 +269,10 @@ public class PesquisaEmprestimosBean implements Serializable {
 				"swal({ type: 'success', title: 'Concluído!', text: 'Pagamento registrado com sucesso!' });"
 				+ "PF('wizard').loadStep(PF('wizard').cfg.steps[0], true);");
 	}
+	
+	public void confirmarAlteracaoVencimento() {
+		emprestimos.save(emprestimoSelecionado);		
+	}
 
 	public List<Emprestimo> getListaEmprestimos() {
 		return listaEmprestimos;
