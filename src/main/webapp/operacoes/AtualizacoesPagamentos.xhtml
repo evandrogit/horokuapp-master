@@ -589,6 +589,11 @@
 									style="font-weight: bold">
 									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</p:outputLabel>
+								
+								<p:commandButton icon="fa fa-fw fa-save"
+									style="float: right;position: relative;margin-right: 8px;font-weight: bold;font-size: 13px;background-color: #089a29c7;"	
+									update="form">
+								</p:commandButton>
 
 								<p:outputLabel value="Débito:" />
 								<p:outputLabel value="R$ #{pesquisaEmprestimosBean.debito}"
