@@ -575,6 +575,11 @@
 					<p:tab title="Pendente"
 						rendered="#{not(pesquisaEmprestimosBean.emprestimoSelecionado.total le 0)}">
 						<p:panel>
+							<p:commandButton icon="fa fa-fw fa-edit"
+								style="float: right;width: 25px;height: 25px;position: absolute;margin-right: 60px;margin-top: -30px;right: 0;font-weight: bold;font-size: 13px;background-color: #848179e3;"	
+								update="form">
+							</p:commandButton>
+							
 							<p:panelGrid columns="2" layout="grid" style="margin-bottom: 5px"
 								styleClass="panelgrid-noborder disabled disabled apply-result"
 								columnClasses="ui-grid-col-3, ui-grid-col-9">
@@ -590,11 +595,6 @@
 									<f:convertDateTime pattern="dd/MM/yyyy" locale="pt" />
 								</p:outputLabel>
 								
-								<p:commandButton icon="fa fa-fw fa-edit"
-									style="float: right;width: 25px;height: 25px;position: absolute;margin-right: 60px;margin-top: -30px;right: 0;font-weight: bold;font-size: 13px;background-color: #848179e3;"	
-									update="form">
-								</p:commandButton>
-
 								<p:outputLabel value="Débito:" />
 								<p:outputLabel value="R$ #{pesquisaEmprestimosBean.debito}"
 									style="font-weight: bold">
