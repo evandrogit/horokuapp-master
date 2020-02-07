@@ -777,7 +777,7 @@
 			
 			<h:form id="form-proximoPagamento">
 				<p:calendar id="inline" mode="inline"
-					value="#{pesquisaEmprestimosBean.emprestimoSelecionado.proximoVencimento}"
+					value="#{pesquisaEmprestimosBean.emprestimoSelecionado.proximoVencimentoTemp}"
 					locale="pt" pattern="dd/MM/yyyy" />
 
 				<p:panelGrid columns="2" layout="grid"
@@ -793,7 +793,7 @@
 
 					<p:commandButton icon="fa fa-fw fa-close"
 						style="float: right;font-weight: bold;font-size: 13px;background-color: #ab3705b5;position: relative;margin-right: 3px;"
-						value="Cancelar"
+						value="Cancelar" action="#{pesquisaEmprestimosBean.cancelaAlteracaoVencimento}"
 						oncomplete="PF('proximoPagamento-dialog').hide();">
 					</p:commandButton>
 				</p:panelGrid>
