@@ -789,7 +789,7 @@
 						value="Confirmar" process="@this proximoPagamento-dialog inline form-proximoPagamento"
 						action="#{pesquisaEmprestimosBean.confirmarAlteracaoVencimento}"
 						onstart="start();"
-						update="form cliente-dialog" oncomplete="stop()PF('proximoPagamento-dialog').hide();">
+						update="form cliente-dialog" oncomplete="stop();PF('proximoPagamento-dialog').hide();">
 					</p:commandButton>
 
 					<p:commandButton icon="fa fa-fw fa-close"
