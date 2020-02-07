@@ -272,7 +272,21 @@ public class PesquisaEmprestimosBean implements Serializable {
 	
 	public void confirmarAlteracaoVencimento() {
 		emprestimos.save(emprestimoSelecionado);
-		pesquisar();
+		listaEmprestimos = emprestimos.filtrados(filtro);
+		
+		for (Emprestimo emprestimo : listaEmprestimos) {
+			emprestimo.setTotalTemp(nf.format(emprestimo.getTotal().doubleValue()));
+			
+                        if(emprestimo.getProximoVencimento() != null) {
+			   if(emprestimo.getProximoVencimento().before(new Date())) {
+				   emprestimo.setVencido(true);
+			   } else {
+				   emprestimo.setVencido(false);
+			   }
+                        }
+		}
+		
+		PrimeFaces.current().executeScript("PF('cliente-dialog').show();");
 		PrimeFaces.current().executeScript("swal({position : 'center',type : 'success',text : 'Alteração realizada com sucesso.',title : 'Concluído!',showConfirmButton : true,});");
 	}
 
