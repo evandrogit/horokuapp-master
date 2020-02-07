@@ -575,7 +575,7 @@
 					<p:tab title="Pendente"
 						rendered="#{not(pesquisaEmprestimosBean.emprestimoSelecionado.total le 0)}">
 						<p:panel>
-							<p:commandLink icon="fa fa-fw fa-edit" 
+							<p:commandLink icon="fa fa-fw fa-edit"  actionListener="#{pesquisaEmprestimosBean.cancelaAlteracaoVencimento}"
 								style="float: right;width: 25px;height: 25px;position: absolute;margin-right: 60px;margin-top: 31px;right: 0;font-weight: bold;font-size: 13px;"	
 								update="proximoPagamento-dialog" oncomplete="PF('proximoPagamento-dialog').show()">
 								
