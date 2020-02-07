@@ -271,6 +271,7 @@ public class PesquisaEmprestimosBean implements Serializable {
 	}
 	
 	public void confirmarAlteracaoVencimento() {
+		emprestimoSelecionado.setProximoVencimento(emprestimoSelecionado.getProximoVencimentoTemp());
 		emprestimos.save(emprestimoSelecionado);
 		listaEmprestimos = emprestimos.filtrados(filtro);
 		
@@ -287,7 +288,10 @@ public class PesquisaEmprestimosBean implements Serializable {
 		}
 		
 		PrimeFaces.current().executeScript("PF('cliente-dialog').show();");
-		PrimeFaces.current().executeScript("swal({position : 'center',type : 'success',text : 'Alteração realizada com sucesso.',title : 'Concluído!',showConfirmButton : true,});");
+	}
+	
+	public void cancelaAlteracaoVencimento() {
+		emprestimoSelecionado.setProximoVencimentoTemp(emprestimoSelecionado.getProximoVencimento());	
 	}
 
 	public List<Emprestimo> getListaEmprestimos() {
